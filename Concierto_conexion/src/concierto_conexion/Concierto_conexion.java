@@ -2,11 +2,9 @@
 package concierto_conexion;
 
 import java.sql.PreparedStatement;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class Concierto_conexion {
@@ -43,8 +41,6 @@ public class Concierto_conexion {
         System.out.println("");
         boolean booleanito=true;
         while(booleanito){
-           
-            
             abrir.menuPrincipal();
             System.out.println("");
             int ingresa_id=0;
@@ -69,17 +65,14 @@ public class Concierto_conexion {
                         String Lugar = verconcierto.getString("Lugar");
                         double PrecioBase = verconcierto.getDouble("PrecioBase");
 
-                        System.out.println("Nombre: " + idecita);
+                        System.out.println("id: " + idecita);
                         System.out.println("Nombre: " + Nombre);
                         System.out.println("Artista: " + Artista);
                         System.out.println("Fecha: " + Fecha);
                         System.out.println("Lugar: " + Lugar);
                         System.out.println("PrecioBase: " + PrecioBase);
                         System.out.println("----------------------------");
-
                     }  
-                    
-                    
                     
                 break;
                 case 2:
@@ -107,7 +100,9 @@ public class Concierto_conexion {
                     PreparedStatement mostrarcliente=null;
                     ResultSet vercliente = null;
                     String cinser="INSERT INTO cliente (Nombre, Apellido1,Apellido2, Correo, Telefono) VALUES (?, ?, ?, ?,?)";
-                    
+                    System.out.println("");
+                    System.out.println("----Lista Clientes----");
+                    System.out.println("");
                     insertarcliente = obt.prepareStatement(cinser);
                     insertarcliente.setString(1, Nombrecliente);
                     insertarcliente.setString(2, Apellido1cliente);
@@ -121,13 +116,14 @@ public class Concierto_conexion {
                     vercliente=mostrarcliente.executeQuery();
                     
                     while(vercliente.next()){
+                        String idecita = vercliente.getString("id");
                         String Nombre = vercliente.getString("Nombre");
                         String Apellido1 = vercliente.getString("Apellido1");
                         String Apellido2 = vercliente.getString("Apellido2");
                         String Correo = vercliente.getString("Correo");
                         int Telefono = vercliente.getInt("Telefono");
 
-                       
+                        System.out.println("id: " + idecita);
                         System.out.println("Nombre: " + Nombre);
                         System.out.println("Apellido1: " + Apellido1);
                         System.out.println("Apellido2: " + Apellido2);
@@ -145,9 +141,7 @@ public class Concierto_conexion {
                     int idconcierto=0;
                     int Tzona=0;
                     String fecha="";
-                
                     
-                     
                     System.out.println("Ingrese la fecha de la compra:"); 
                     scanner.nextLine();
                     fecha=scanner.nextLine();
@@ -158,6 +152,7 @@ public class Concierto_conexion {
                     abrir.menuZona();
                     System.out.println("Ingrese el id de la zona que quiere:"); 
                     Tzona=scanner.nextInt();
+                    
                     if(Tzona==1){
                         PreparedStatement sumaTotalt=null;
                         ResultSet precio=null;
@@ -182,9 +177,7 @@ public class Concierto_conexion {
 
                             insertTicket.executeUpdate();
                         }
-                        
-                        
-                       
+                         
                     }
                     if(Tzona==2){
                         PreparedStatement sumaTotalt=null;
@@ -237,7 +230,6 @@ public class Concierto_conexion {
                             insertTicket.executeUpdate();
                         }
                        
-
                     }
                     if(Tzona==4){
                         PreparedStatement sumaTotalt=null;
@@ -291,12 +283,6 @@ public class Concierto_conexion {
                         }
                         
                     }
-                     
-                    
-                    
-                    
-                    
-                    
                 break;
                 case 4:
                     
@@ -394,7 +380,6 @@ public class Concierto_conexion {
                     System.out.println("Haz abandonado el programa Hasta la proxima :)");
                     booleanito=false;
                 break;
-                
                 
             }
         }
