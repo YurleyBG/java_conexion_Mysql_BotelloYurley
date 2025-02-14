@@ -36,57 +36,6 @@ public class Concierto_conexion {
        
         conexion Conexion = new conexion();
         Connection obt = Conexion.conectar();
-        PreparedStatement clienteInsert = null;
-        PreparedStatement conciertoInsert = null;
-        PreparedStatement TicketInsert = null;
-        PreparedStatement ZonaInsert = null;
-
-        try {
-            String sqlinsert = "INSERT INTO cliente (Nombre, Apellido1,Apellido2, Correo, Telefono) VALUES (?, ?, ?, ?,?)";
-            String sqlinsertc = "INSERT INTO concierto ( Nombre, Artista, Fecha, Lugar, PrecioBase) VALUES (?, ?, ?, ?,?)";
-            String sqlinsertT = "INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
-            String sqlinsertZ = "INSERT INTO zona ( NombreZona, Capacidad, PrecioAdicional) VALUES (?, ?, ?)";
-
-            clienteInsert = obt.prepareStatement(sqlinsert);
-            clienteInsert.setString(1, "Juan");
-            clienteInsert.setString(2, "Pérez");
-            clienteInsert.setString(3, "Hernandez");
-            clienteInsert.setString(4, "juan@email.com");
-            clienteInsert.setString(5, "1234567890");
-
-            conciertoInsert=obt.prepareStatement(sqlinsertc);
-            conciertoInsert.setString(1, "Rock en Vivo");
-            conciertoInsert.setString(2, "Queen");
-            conciertoInsert.setString(3, "2025-03-01");
-            conciertoInsert.setString(4, "Estadio A");
-            conciertoInsert.setDouble(5,  50.0);
-
-            TicketInsert = obt.prepareStatement(sqlinsertT);
-            TicketInsert.setInt(1, 1);
-            TicketInsert.setInt(2, 2);
-            TicketInsert.setString(3, "Vip");
-            TicketInsert.setDouble(4, 100.0);
-            TicketInsert.setString(5, "2025-03-01");
-
-
-            ZonaInsert=obt.prepareStatement(sqlinsertZ);
-            ZonaInsert.setString(1, "Vip");
-            ZonaInsert.setInt(2, 30);
-            ZonaInsert.setDouble(3, 30.0);
-
-            int filasInsertadas = clienteInsert.executeUpdate();
-            int filasInsertadas1 = conciertoInsert.executeUpdate();
-            int filasInsertadas2 = TicketInsert.executeUpdate();
-            int filasInsertadas3 = ZonaInsert.executeUpdate();
-            
-            System.out.println(filasInsertadas);
-
-        } 
-        catch (SQLException e) {
-            System.out.println("Error al insertar datos.");
-            e.printStackTrace();
-        } 
-        
         Scanner scanner = new Scanner(System.in);
         Concierto_conexion abrir =new Concierto_conexion();
         
@@ -104,6 +53,7 @@ public class Concierto_conexion {
             switch(ingresa_id){
                 case 1:
                     System.out.println("_______CONCIERTOS DISPONIBLES_____");
+                    
                     PreparedStatement mostrarconcierto=null;
                     ResultSet verconcierto = null;
                      String sqlinsertc = "INSERT INTO concierto ( Nombre, Artista, Fecha, Lugar, PrecioBase) VALUES (?, ?, ?, ?,?)";
@@ -112,13 +62,14 @@ public class Concierto_conexion {
                     verconcierto=mostrarconcierto.executeQuery();
                     
                     while(verconcierto.next()){
+                        String idecita = verconcierto.getString("id");
                         String Nombre = verconcierto.getString("Nombre");
                         String Artista = verconcierto.getString("Artista");
                         String Fecha = verconcierto.getString("Fecha");
                         String Lugar = verconcierto.getString("Lugar");
                         double PrecioBase = verconcierto.getDouble("PrecioBase");
 
-                       
+                        System.out.println("Nombre: " + idecita);
                         System.out.println("Nombre: " + Nombre);
                         System.out.println("Artista: " + Artista);
                         System.out.println("Fecha: " + Fecha);
