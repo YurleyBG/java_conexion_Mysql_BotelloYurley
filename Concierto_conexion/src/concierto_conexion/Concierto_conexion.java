@@ -259,6 +259,7 @@ public class Concierto_conexion {
                      
                     }
                     if(Tzona==5){
+                        
                         PreparedStatement sumaTotalt=null;
                         ResultSet precio=null;
                         String total = "SELECT Preciobase + PrecioAdicional FROM concierto c inner join ticket t on c.id=t.ID_Concierto"
