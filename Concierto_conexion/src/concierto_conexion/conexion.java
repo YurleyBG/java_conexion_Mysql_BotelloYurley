@@ -10,7 +10,7 @@ public class conexion {
     String bd="conciertos";
     String url="jdbc:mysql://localhost:3306/";
     String user="root";
-    String password="yurley2007";
+    String password="campus2023";
     String driver="com.mysql.cj.jdbc.Driver";
     Connection cx;
     

@@ -26,7 +26,7 @@ public class Concierto_conexion {
         System.out.println("2. centro 15.0.");
         System.out.println("3. lateral_der 10.0.");
         System.out.println("4. lateral_izq 25.0.");
-        System.out.println("5. lateral_izq 25.0.");
+        System.out.println("5. VIP 25.0.");
         System.out.println("-------------------");
     }
     
@@ -44,7 +44,7 @@ public class Concierto_conexion {
             abrir.menuPrincipal();
             System.out.println("");
             int ingresa_id=0;
-            System.out.println("Ingrese la id a la que desea entrar:");
+            System.out.println("Ingrese la id a la que desea entrar:"); 
             ingresa_id=scanner.nextInt();
             switch(ingresa_id){
                 case 1:
@@ -90,7 +90,7 @@ public class Concierto_conexion {
                     System.out.println("Ingrese el apellido1:");
                  
                     Apellido1cliente=scanner.nextLine();
-                     System.out.println("Ingrese el apellido2:");
+                    System.out.println("Ingrese el apellido2:");
                     Apellido2cliente=scanner.nextLine();
                     System.out.println("Ingrese el correo electronico:"); 
                     Correocliente=scanner.nextLine();
@@ -108,6 +108,7 @@ public class Concierto_conexion {
                     insertarcliente.setString(2, Apellido1cliente);
                     insertarcliente.setString(3, Apellido2cliente);
                     insertarcliente.setString(4, Correocliente);
+                    
                     insertarcliente.setInt(5, Telefonocliente);
                     
                     insertarcliente.executeUpdate();
@@ -156,7 +157,7 @@ public class Concierto_conexion {
                     if(Tzona==1){
                         PreparedStatement sumaTotalt=null;
                         ResultSet precio=null;
-                        String total = "SELECT Preciobase + PrecioAdicional FROM concierto c inner join ticket t on c.id=t.ID_Concierto"
+                        String total = "SELECT c.Preciobase + z.PrecioAdicional FROM concierto c inner join ticket t on c.id=t.ID_Concierto"
                                 +" "+ " inner join zona z on t.zona=z.NombreZona WHERE ID_Cliente = ? and zona= ?";
                         sumaTotalt = obt.prepareStatement(total);
                         sumaTotalt.setInt(1, idnewcliente);
@@ -166,7 +167,7 @@ public class Concierto_conexion {
                             double precioFin = precio.getDouble(1);
                             
                             PreparedStatement insertTicket=null;
-                            String Tinser="INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
+                            String Tinser="INSERT INTO ticket ( ID_Cliente, ID_Concierto, zona, precioFinal, fechaCompra) VALUES (?, ?, ?, ?,?)";
 
                             insertTicket = obt.prepareStatement(Tinser);
                             insertTicket.setInt(1, idnewcliente);
@@ -192,7 +193,7 @@ public class Concierto_conexion {
                             double precioFin = precio.getDouble(1);
                             
                             PreparedStatement insertTicket=null;
-                            String Tinser="INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
+                            String Tinser="INSERT INTO ticket ( ID_Cliente, ID_Concierto, zona, precioFinal, fechaCompra) VALUES (?, ?, ?, ?,?)";
 
                             insertTicket = obt.prepareStatement(Tinser);
                             insertTicket.setInt(1, idnewcliente);
@@ -218,7 +219,7 @@ public class Concierto_conexion {
                             double precioFin = precio.getDouble(1);
                             
                             PreparedStatement insertTicket=null;
-                            String Tinser="INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
+                            String Tinser="INSERT INTO ticket ( ID_Cliente, ID_Concierto, zona, precioFinal, fechaCompra) VALUES (?, ?, ?, ?,?)";
 
                             insertTicket = obt.prepareStatement(Tinser);
                             insertTicket.setInt(1, idnewcliente);
@@ -244,7 +245,7 @@ public class Concierto_conexion {
                             double precioFin = precio.getDouble(1);
                             
                             PreparedStatement insertTicket=null;
-                            String Tinser="INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
+                            String Tinser="INSERT INTO ticket (ID_Cliente, ID_Concierto, zona, precioFinal, fechaCompra) VALUES (?, ?, ?, ?,?)";
 
                             insertTicket = obt.prepareStatement(Tinser);
                             insertTicket.setInt(1, idnewcliente);
@@ -270,7 +271,7 @@ public class Concierto_conexion {
                             double precioFin = precio.getDouble(1);
                             
                             PreparedStatement insertTicket=null;
-                            String Tinser="INSERT INTO Ticket ( ID_Cliente, ID_Concierto, Zona, PrecioFinal, FechaCompra) VALUES (?, ?, ?, ?,?)";
+                            String Tinser="INSERT INTO ticket ( ID_Cliente, ID_Concierto, zona, precioFinal, fechaCompra) VALUES (?, ?, ?, ?,?)";
 
                             insertTicket = obt.prepareStatement(Tinser);
                             insertTicket.setInt(1, idnewcliente);
