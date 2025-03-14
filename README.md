@@ -22,6 +22,8 @@ al hacer esto se descargará  los datos del repositorio. puedes usar NetBeans  y
  ## Tecnología utilizadas
 
 * Java
+* Mysql
+* Se utilizo el jdmc para establecer la conexion entre ambas.
 
 
 # Creditos
